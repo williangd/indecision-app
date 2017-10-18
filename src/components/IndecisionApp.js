@@ -45,7 +45,7 @@ export default class IndecisionApp extends React.Component {
     try {
       const json = localStorage.getItem('options');
       const options = JSON.parse(json);
-  
+
       if (options) {
         this.setState(() => ({ options }));
       }
@@ -63,19 +63,23 @@ export default class IndecisionApp extends React.Component {
     return (
       <div>
         <Header subtitle={subtitle} />
-        <Action
-          hasOptions={this.state.options.length > 1}
-          handlePick={this.handlePick}
-        />
-        <Options
-          options={this.state.options}
-          handleDeleteOptions={this.handleDeleteOptions}
-          handleDeleteOption={this.handleDeleteOption}
-        />
-        <AddOptions
-          handleAddOption={this.handleAddOption}
-        />
-        <OptionModal 
+        <div className="container">
+          <Action
+            hasOptions={this.state.options.length > 1}
+            handlePick={this.handlePick}
+          />
+          <div className="widget">
+            <Options
+              options={this.state.options}
+              handleDeleteOptions={this.handleDeleteOptions}
+              handleDeleteOption={this.handleDeleteOption}
+            />
+            <AddOptions
+              handleAddOption={this.handleAddOption}
+            />
+          </div>
+        </div>
+        <OptionModal
           selectedOption={this.state.selectedOption}
           handleClose={this.handleClose}
         />
